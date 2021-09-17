@@ -4,22 +4,30 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var cors = require('cors');
-
-let whitelist = ['https://rkseksgkrns.shop', 'https://rkseksgkrns.shop:3000', 'http://rkseksgkrns.shop:3000'];
-let corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not Allowed Origin!"));
-    }
-  },
-  credentials:true
-}
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+var cors = require('cors');
+
+let whitelist = [
+	'https://rkseksgkrns.shop',
+	'https://rkseksgkrns.shop:3000', 
+	'http://rkseksgkrns.shop:3000', 
+	'https://rkseksgkrns.shop:3001', 
+	'http://rkseksgkrns.shop:3001'
+];
+
+let corsOptions = {
+origin: function (origin, callback) {
+		if (whitelist.indexOf(origin) !== -1) {
+			callback(null, true);
+		} else {
+			console.log(origin);
+			callback(new Error("Not Allowed Origin!"));
+		}
+	},
+	credentials:true
+}
 
 var app = express();
 
