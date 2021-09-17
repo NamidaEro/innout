@@ -1,0 +1,7 @@
+{
+    "host": "localhost",
+    "user": "yui",
+    "password": "1q2w3e4r",
+    "database": "cinstagram",
+    "connectionLimit": 30
+}
