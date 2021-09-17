@@ -90,4 +90,14 @@ router.get('/auth', function(req, res, next) {
     res.send({isAuthenticated:isAuth});
 });
 
+router.get('/auth', function(req, res, next) {
+	let isAuth = req.isAuthenticated();
+    res.send({isAuthenticated:isAuth});
+});
+
+/* POST users listing. */
+router.post('/signup', function(req, res, next) {
+    res.send(req.body);
+});
+
 module.exports = router;

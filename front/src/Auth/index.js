@@ -1,5 +1,6 @@
 import Login from './Login';
 import Auth from './Auth';
-import { SendAuth } from './SendServer';
+import { SendAuth, SendSignup } from './SendServer';
+import Signup from './Signup';
 
-export { Login, Auth, SendAuth };
+export { Login, Auth, Signup, SendAuth, SendSignup };

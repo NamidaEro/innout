@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Card, Button, FloatingLabel, Carousel, Form } from 'react-bootstrap';
-import { SendAuth } from './SendServer';
+import { Container, Button, FloatingLabel, Form } from 'react-bootstrap';
+import { SendAuth, SendSignup } from './SendServer';
 
-function Login(props) {
-	useEffect(()=>{
-		SendAuth()
+function Signup(props) {
+    useEffect(() => {
+        SendAuth()
 		.then((param) => {
 			if(param) {
 
@@ -18,20 +17,21 @@ function Login(props) {
 			console.log('Auth Failed');
 			// props.history.push('/Login')
 		});
-	});
+    });
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		console.log(event.target.email.value);
-		console.log(event.target.password.value);
-	};
+    const handleSubmit = (event) => {
+        let userinfo = {
+            email: event.target.email.value,
+            pwd: event.target.password.value
+        };
 
-	const handleOnClick = (event) => {
-		props.history.push('/Signup');
-	};
+        SendSignup(userinfo)
+        .then()
+        .catch();
+    };
 
-	return (
-		<Container>
+    return (
+        <Container>
 			<Form onSubmit={handleSubmit}>
 				<FloatingLabel controlId="floatingInput" label="Email">
 					<Form.Control name="email" type="email" placeholder="Enter email" />
@@ -43,9 +43,8 @@ function Login(props) {
 
 				<div className="d-grid gap-2"><Button variant="primary" type="submit">Sign in</Button></div>
 			</Form>
-			<Button variant="primary" onClick={handleOnClick}>Sign up</Button>
 		</Container>
-	);
+    );
 }
 
-export default Login;
+export default Signup;
